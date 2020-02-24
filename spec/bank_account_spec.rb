@@ -25,7 +25,7 @@ describe BankAccount do
     end
   end
 
-  describe '#statment' do
+  describe '#statement' do
     it 'has method to return statement' do
       expect(subject).to respond_to(:statement)
     end
@@ -33,19 +33,24 @@ describe BankAccount do
       top_line = subject.statement.split("\n")[0]
       expect(top_line).to include('balance')
     end
-    it 'displays header with debits on the top line' do
+    it 'displays header with debits title on the top line' do
       top_line = subject.statement.split("\n")[0]
       expect(top_line).to include('debit || balance')
     end
-    it 'returns history of debit with associated balance' do
+    it 'returns history of debits with associated balance' do
       subject.withdraw(10)
       expect(subject.statement).to include('10 || -10')
     end
     it 'returns history of multiple debits each on a newline' do
       subject.withdraw(10)
       subject.withdraw(2)
-      expect(subject.statement).to include("10 || -10\n")
-      expect(subject.statement).to include("2 || -12\n")
+      split_lines = subject.statement.split("\n")
+      expect(split_lines[1]).to include('10 || -10')
+      expect(split_lines[2]).to include('2 || -12')
+    end
+    it 'displays header with credits title on the top line' do
+      top_line = subject.statement.split("\n")[0]
+      expect(top_line).to include('credit || debit || balance')
     end
   end
 end
