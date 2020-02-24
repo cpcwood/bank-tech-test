@@ -20,5 +20,8 @@ describe BankAccount do
     it 'has method to return statement' do
       expect(subject).to respond_to(:statement)
     end
+    it 'returns the current balance of the account' do
+      expect(subject.statement).to include('0')
+    end
   end
 end
