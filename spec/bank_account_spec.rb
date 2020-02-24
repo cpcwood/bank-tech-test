@@ -18,6 +18,11 @@ describe BankAccount do
     it 'returns amount of money being withdrawn' do
       expect(subject.withdraw(10)).to eq(10)
     end
+    it 'reduces the account balance by the amount being withdrawn' do
+      subject.deposit(10)
+      subject.withdraw(5)
+      expect(subject.statement).to include('5')
+    end
   end
 
   describe '#statment' do
