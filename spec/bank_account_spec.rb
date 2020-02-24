@@ -15,4 +15,10 @@ describe BankAccount do
       expect(subject.withdraw(10)).to eq(10)
     end
   end
+
+  describe '#statment' do
+    it 'has method to return statement' do
+      expect(subject).to respond_to(:statement)
+    end
+  end
 end

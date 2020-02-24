@@ -5,4 +5,6 @@ class BankAccount
   def withdraw(amount_being_withdrawn)
     amount_being_withdrawn
   end
+
+  def statement; end
 end
