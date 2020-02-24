@@ -36,5 +36,9 @@ describe BankAccount do
       top_line = subject.statement.split("\n")[0]
       expect(top_line).to include('balance')
     end
+    it 'displays header with debit/credit on top line' do
+      top_line = subject.statement.split("\n")[0]
+      expect(top_line).to include('debit || credit ||')
+    end
   end
 end
