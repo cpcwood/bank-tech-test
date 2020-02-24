@@ -5,6 +5,10 @@ describe BankAccount do
     it 'allows amount of money can be deposited' do
       expect(subject).to respond_to(:deposit).with(1).argument
     end
+    it 'adds deposited sum to the balance' do
+      subject.deposit(20)
+      expect(subject.statement).to include('20')
+    end
   end
 
   describe '#withdraw' do

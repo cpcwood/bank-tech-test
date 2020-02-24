@@ -4,7 +4,9 @@ class BankAccount
     @balance = 0
   end
 
-  def deposit(amount_being_deposited); end
+  def deposit(amount_being_deposited)
+    @balance += amount_being_deposited
+  end
 
   def withdraw(amount_being_withdrawn)
     amount_being_withdrawn
