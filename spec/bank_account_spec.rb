@@ -52,5 +52,9 @@ describe BankAccount do
       top_line = subject.statement.split("\n")[0]
       expect(top_line).to include('credit || debit || balance')
     end
+    it 'returns history of credits with associated balance' do
+      subject.deposit(10)
+      expect(subject.statement).to include('10 || || 10')
+    end
   end
 end

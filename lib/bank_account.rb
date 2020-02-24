@@ -27,6 +27,10 @@ class BankAccount
   private
 
   def generate_statement_line(record)
-    "#{record[:debit] || record[:credit]} || #{record[:balance]}\n"
+    "#{stringify_value(record[:credit])}||#{stringify_value(record[:debit])}||#{stringify_value(record[:balance])}\n"
+  end
+
+  def stringify_value(value)
+    value ? " #{value} " : ' '
   end
 end
