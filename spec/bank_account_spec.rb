@@ -36,9 +36,13 @@ describe BankAccount do
       top_line = subject.statement.split("\n")[0]
       expect(top_line).to include('balance')
     end
-    it 'displays header with debit/credit on top line' do
+    it 'displays header with debits on the top line' do
       top_line = subject.statement.split("\n")[0]
-      expect(top_line).to include('debit || credit ||')
+      expect(top_line).to include('debit || balance')
+    end
+    it 'returns history of debit with associated balance' do
+      subject.withdraw(10)
+      expect(subject.statement).to include('10 || -10')
     end
   end
 end

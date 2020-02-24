@@ -10,12 +10,13 @@ class BankAccount
 
   def withdraw(amount_being_withdrawn)
     @balance -= amount_being_withdrawn
+    @transaction_history = { debit: amount_being_withdrawn }
     amount_being_withdrawn
   end
 
   def statement
-    top_line = "debit || credit || balance\n"
-    balance = @balance.to_s
-    top_line + balance
+    top_line = "debit || balance\n"
+    statement_line = "#{@transaction_history[:debit] if @transaction_history} || #{@balance}"
+    top_line + statement_line
   end
 end
