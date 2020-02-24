@@ -11,5 +11,8 @@ describe BankAccount do
     it 'allows amount of money to be withdrawn' do
       expect(subject).to respond_to(:withdraw).with(1).argument
     end
+    it 'returns amount of money being withdrawn' do
+      expect(subject.withdraw(10)).to eq(10)
+    end
   end
 end
