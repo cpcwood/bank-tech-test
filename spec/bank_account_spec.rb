@@ -32,5 +32,9 @@ describe BankAccount do
     it 'returns the current balance of the account' do
       expect(subject.statement).to include('0')
     end
+    it 'displays header of balance on top line' do
+      top_line = subject.statement.split("\n")[0]
+      expect(top_line).to include('balance')
+    end
   end
 end

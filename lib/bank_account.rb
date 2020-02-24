@@ -14,6 +14,8 @@ class BankAccount
   end
 
   def statement
-    @balance.to_s
+    top_line = "balance\n"
+    balance = @balance.to_s
+    top_line + balance
   end
 end
