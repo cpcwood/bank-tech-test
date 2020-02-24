@@ -56,5 +56,12 @@ describe BankAccount do
       subject.deposit(10)
       expect(subject.statement).to include('10 || || 10')
     end
+    it 'returns history of multiple credits each on a newline' do
+      subject.deposit(10)
+      subject.deposit(2)
+      split_lines = subject.statement.split("\n")
+      expect(split_lines[1]).to include('10 || || 10')
+      expect(split_lines[2]).to include('2 || || 12')
+    end
   end
 end
