@@ -3,11 +3,9 @@ ruby '2.6.5'
 source 'https://rubygems.org'
 
 group :test do
-
 end
 
 group :development do
-
 end
 
 group :development, :test do
@@ -23,5 +21,4 @@ group :development, :test do
 end
 
 group :production do
-
 end

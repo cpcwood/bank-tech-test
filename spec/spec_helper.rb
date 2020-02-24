@@ -1,4 +1,4 @@
-#add simple cov setup to rspec setup file=>>
+# add simple cov setup to rspec setup file=>>
 require 'simplecov'
 require 'simplecov-console'
 
@@ -6,7 +6,6 @@ SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([SimpleCov::Forma
 SimpleCov.start
 
 RSpec.configure do |config|
-
   # Use color not only in STDOUT but also in pagers and files
   config.tty = true
 
