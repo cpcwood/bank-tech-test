@@ -1,8 +1,9 @@
 # User interface for CLI Bank, accepts Ouputter, Inputter, and Bank class in initalization
 class BankUi
-  def initialize(outputter:, inputter:)
+  def initialize(outputter:, inputter:, bank_account:)
     @outputter = outputter
     @inputter = inputter
+    @bank_account = bank_account
   end
 
   def run_bank_ui
@@ -27,6 +28,8 @@ class BankUi
 
   def display_statement
     @outputter.puts("\e[H\e[2J")
-    @outputter.puts('CLI Bank Statement')
+    @outputter.puts("CLI Bank Statement\n===================")
+    @outputter.puts(@bank_account.statement)
+    @outputter.puts("\nInput any charater to return to options...")
   end
 end

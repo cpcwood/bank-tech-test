@@ -12,9 +12,10 @@ class MockOutputter
 end
 
 describe BankUi do
+  let(:bank_account){ double :bank_account, statement: 'test statement' }
   before(:each) do
     @mock_outputter = MockOutputter.new
-    @bank_ui = BankUi.new(outputter: @mock_outputter, inputter: STDIN)
+    @bank_ui = BankUi.new(outputter: @mock_outputter, inputter: STDIN, bank_account: bank_account)
   end
 
   describe '#start_banking' do
@@ -62,7 +63,15 @@ describe BankUi do
     end
     it 'adds title to screen' do
       @bank_ui.display_statement
-      expect(@mock_outputter.outputs[1]).to eq('CLI Bank Statement')
+      expect(@mock_outputter.outputs[1]).to eq("CLI Bank Statement\n===================")
+    end
+    it 'adds displays statement from passed in bank account class' do
+      @bank_ui.display_statement
+      expect(@mock_outputter.outputs[2]).to eq('test statement')
+    end
+    it 'asks user to input any charater to return to options' do
+      @bank_ui.display_statement
+      expect(@mock_outputter.outputs[3]).to eq("\nInput any charater to return to options...")
     end
   end
 
