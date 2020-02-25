@@ -45,7 +45,7 @@ class BankUi
     @outputter.puts("Deposit Money\n===================")
     @outputter.puts("\nPlease enter amount to deposit (e.g 110.53) or 'quit' to return to user options...")
     input = @inputter.gets.chomp
-    return @outputter.puts("Invalid number or 'quit' inputted, returning to user options") unless input.match?(/\A\d+(\.\d{2})?\z/)
+    return if invalid_input?(input)
     @bank_account.deposit(input.to_f)
   end
 
@@ -53,5 +53,15 @@ class BankUi
     @outputter.puts("\e[H\e[2J")
     @outputter.puts("Withdraw Money\n===================")
     @outputter.puts("\nPlease enter amount to withdraw (e.g 110.53) or 'quit' to return to user options...")
+    input = @inputter.gets.chomp
+    return if invalid_input?(input)
+  end
+
+  private
+
+  def invalid_input?(input)
+    return if input.match?(/\A\d+(\.\d{2})?\z/)
+    @outputter.puts("Invalid number or 'quit' inputted, returning to user options")
+    true
   end
 end
