@@ -74,5 +74,10 @@ describe BankAccount do
       top_line = subject.statement.split("\n")[0]
       expect(top_line).to include('date || credit || debit || balance')
     end
+    it 'returns debit history with data of transaction' do
+      allow(Time).to receive(:now).and_return(Time.new(2020, 1, 14))
+      subject.deposit(10)
+      expect(subject.statement).to include('14/01/2020 || 10 || || 10')
+    end
   end
 end

@@ -7,12 +7,12 @@ class BankAccount
 
   def deposit(amount_being_deposited)
     @balance += amount_being_deposited
-    @transaction_history.push({ credit: amount_being_deposited, balance: @balance })
+    @transaction_history.push({ date: Time.now, credit: amount_being_deposited, balance: @balance })
   end
 
   def withdraw(amount_being_withdrawn)
     @balance -= amount_being_withdrawn
-    @transaction_history.push({ debit: amount_being_withdrawn, balance: @balance })
+    @transaction_history.push({ date: Time.now, debit: amount_being_withdrawn, balance: @balance })
     amount_being_withdrawn
   end
 
@@ -27,10 +27,10 @@ class BankAccount
   private
 
   def generate_statement_line(record)
-    "#{stringify_value(record[:credit])}||#{stringify_value(record[:debit])}||#{stringify_value(record[:balance])}\n"
+    "#{str_value(record[:date].strftime('%d/%m/%Y'))}||#{str_value(record[:credit])}||#{str_value(record[:debit])}||#{str_value(record[:balance])}\n"
   end
 
-  def stringify_value(value)
+  def str_value(value)
     value ? " #{value} " : ' '
   end
 end
