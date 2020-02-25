@@ -38,7 +38,8 @@ class BankUi
   def deposit_money
     @outputter.puts("\e[H\e[2J")
     @outputter.puts("Deposit Money\n===================")
-    @outputter.puts("\nPlease enter amount to deposit...")
-    @inputter.gets.chomp
+    @outputter.puts("\nPlease enter amount to deposit (e.g 110.53) or 'quit' to return to user options...")
+    input = @inputter.gets.chomp
+    return @outputter.puts("Invalid number or 'quit' inputted, returning to user options") unless input.match?(/\A\d+\.\d{2}\z/)
   end
 end

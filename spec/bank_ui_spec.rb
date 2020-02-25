@@ -98,11 +98,16 @@ describe BankUi do
     end
     it 'asks user for input' do
       @bank_ui.deposit_money
-      expect(@mock_outputter.outputs[2]).to eq("\nPlease enter amount to deposit...")
+      expect(@mock_outputter.outputs[2]).to eq("\nPlease enter amount to deposit (e.g 110.53) or 'quit' to return to user options...")
     end
     it 'gets user input' do
       expect(STDIN).to receive(:gets)
       @bank_ui.deposit_money
+    end
+    it 'if input is invalid number deposit displays error and returns' do
+      allow(STDIN).to receive(:gets).and_return('asd10.00')
+      @bank_ui.deposit_money
+      expect(@mock_outputter.outputs[3]).to eq("Invalid number or 'quit' inputted, returning to user options")
     end
   end
 
