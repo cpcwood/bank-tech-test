@@ -38,12 +38,12 @@ describe BankAccount do
       subject.withdraw(10)
       expect(subject.statement).to include('10 || -10')
     end
-    it 'returns history of multiple debits each on a newline' do
+    it 'returns history of multiple debits, each on a newline, in reverse order' do
       subject.withdraw(10)
       subject.withdraw(2)
       split_lines = subject.statement.split("\n")
-      expect(split_lines[1]).to include('10 || -10')
-      expect(split_lines[2]).to include('2 || -12')
+      expect(split_lines[1]).to include('2 || -12')
+      expect(split_lines[2]).to include('10 || -10')
     end
     it 'displays header with credits title on the top line' do
       top_line = subject.statement.split("\n")[0]
@@ -53,19 +53,19 @@ describe BankAccount do
       subject.deposit(10)
       expect(subject.statement).to include('10 || || 10')
     end
-    it 'returns history of multiple credits each on a newline' do
+    it 'returns history of multiple credits, each on a newline, in reverse order' do
       subject.deposit(10)
       subject.deposit(2)
       split_lines = subject.statement.split("\n")
-      expect(split_lines[1]).to include('10 || || 10')
-      expect(split_lines[2]).to include('2 || || 12')
+      expect(split_lines[1]).to include('2 || || 12')
+      expect(split_lines[2]).to include('10 || || 10')
     end
     it 'returns history of both credits and debits each on a newline' do
       subject.deposit(10)
       subject.withdraw(15)
       split_lines = subject.statement.split("\n")
-      expect(split_lines[1]).to include('10 || || 10')
-      expect(split_lines[2]).to include('|| 15 || -5')
+      expect(split_lines[1]).to include('|| 15 || -5')
+      expect(split_lines[2]).to include('10 || || 10')
     end
     it 'displays header with date title on the top line' do
       top_line = subject.statement.split("\n")[0]
