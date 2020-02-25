@@ -13,7 +13,6 @@ class BankAccount
   def withdraw(amount_being_withdrawn)
     @balance -= amount_being_withdrawn
     @transaction_history.push({ date: Time.now, debit: amount_being_withdrawn, balance: @balance })
-    amount_being_withdrawn
   end
 
   def statement

@@ -15,9 +15,6 @@ describe BankAccount do
     it 'allows amount of money to be withdrawn' do
       expect(subject).to respond_to(:withdraw).with(1).argument
     end
-    it 'returns amount of money being withdrawn' do
-      expect(subject.withdraw(10)).to eq(10)
-    end
     it 'reduces the account balance by the amount being withdrawn' do
       subject.deposit(10)
       subject.withdraw(5)
@@ -78,6 +75,11 @@ describe BankAccount do
       allow(Time).to receive(:now).and_return(Time.new(2020, 1, 14))
       subject.deposit(10)
       expect(subject.statement).to include('14/01/2020 || 10 || || 10')
+    end
+    it 'returns credit history with data of transaction' do
+      allow(Time).to receive(:now).and_return(Time.new(2020, 1, 14))
+      subject.withdraw(6)
+      expect(subject.statement).to include('14/01/2020 || || 6 || -6')
     end
   end
 end
