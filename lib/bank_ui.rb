@@ -9,7 +9,12 @@ class BankUi
   def run_bank_ui
     start_banking
     user_input = user_options
-    display_statement if user_input == '1'
+    case user_input
+    when '1'
+      display_statement
+    when '2'
+      deposit_money
+    end
   end
 
   def start_banking

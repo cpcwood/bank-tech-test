@@ -127,8 +127,13 @@ describe BankUi do
       @bank_ui.run_bank_ui
     end
     it 'if input is 1, it runs display statement' do
-      allow(STDIN).to receive(:gets).and_return('1', '1')
-      expect(@bank_ui).to receive(:display_statement)
+      allow(STDIN).to receive(:gets).and_return('1')
+      expect(@bank_ui).to receive(:display_statement).and_return(nil)
+      @bank_ui.run_bank_ui
+    end
+    it 'if input is 2, its runs deposit money' do
+      allow(STDIN).to receive(:gets).and_return('2')
+      expect(@bank_ui).to receive(:deposit_money).and_return(nil)
       @bank_ui.run_bank_ui
     end
   end
