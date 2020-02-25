@@ -26,10 +26,10 @@ class BankAccount
   private
 
   def generate_statement_line(record)
-    "#{str_value(record[:date].strftime('%d/%m/%Y'))}||#{str_value(record[:credit])}||#{str_value(record[:debit])}||#{str_value(record[:balance])}\n"
+    "#{record[:date].strftime('%d/%m/%Y')} ||#{str_value(record[:credit])}||#{str_value(record[:debit])}||#{str_value(record[:balance])}\n"
   end
 
   def str_value(value)
-    value ? " #{value} " : ' '
+    value ? " #{format('%<value>.2f', value: value)} " : ' '
   end
 end
