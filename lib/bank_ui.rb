@@ -27,5 +27,6 @@ class BankUi
 
   def display_statement
     @outputter.puts("\e[H\e[2J")
+    @outputter.puts('CLI Bank Statement')
   end
 end

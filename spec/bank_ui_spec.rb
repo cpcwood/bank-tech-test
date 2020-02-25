@@ -60,6 +60,10 @@ describe BankUi do
       @bank_ui.display_statement
       expect(@mock_outputter.outputs[0]).to eq("\e[H\e[2J")
     end
+    it 'adds title to screen' do
+      @bank_ui.display_statement
+      expect(@mock_outputter.outputs[1]).to eq('CLI Bank Statement')
+    end
   end
 
   describe '#run_bank_ui' do
