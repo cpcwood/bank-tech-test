@@ -16,24 +16,19 @@ describe BankUi do
   before(:each) do
     @mock_outputter = MockOutputter.new
     @bank_ui = BankUi.new(outputter: @mock_outputter, inputter: STDIN, bank_account: bank_account)
-  end
-
-  describe '#start_banking' do
-    it 'clears console before welcoming user' do
-      @bank_ui.start_banking
-      expect(@mock_outputter.outputs[0]).to eq("\e[H\e[2J")
-    end
-    it 'welcomes user to banking' do
-      @bank_ui.start_banking
-      expect(@mock_outputter.outputs[1]).to eq('Welcome to CLI Bank')
-    end
+    allow(@bank_ui).to receive(:sleep).and_return(nil)
   end
 
   describe '#user_options' do
     it 'clears console before adding options to screen' do
       allow(STDIN).to receive(:gets).and_return('1')
       @bank_ui.user_options
-      expect(@mock_outputter.outputs[0]).to eq("\e[H\e[2J")
+      expect(@mock_outputter.outputs[0]).to include("\e[H\e[2J")
+    end
+    it 'welcomes user to banking' do
+      allow(STDIN).to receive(:gets).and_return('1')
+      @bank_ui.user_options
+      expect(@mock_outputter.outputs[0]).to include('Welcome to CLI Bank')
     end
     it 'displays list of options' do
       allow(STDIN).to receive(:gets).and_return('1')
@@ -148,11 +143,6 @@ describe BankUi do
   end
 
   describe '#run_bank_ui' do
-    it 'runs start banking method' do
-      allow(@bank_ui).to receive(:user_options).and_return('4')
-      expect(@bank_ui).to receive(:start_banking)
-      @bank_ui.run_bank_ui
-    end
     it 'asks users for input' do
       allow(@bank_ui).to receive(:user_options).and_return('4')
       expect(@bank_ui).to receive(:user_options)
