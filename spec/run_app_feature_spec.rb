@@ -6,6 +6,7 @@ describe 'Run App Feature Test' do
     @mock_outputter = MockOutputter.new
     @new_user = BankUi.new(outputter: @mock_outputter, inputter: STDIN, bank_account: BankAccount.new)
     allow_any_instance_of(BankUi).to receive(:sleep).and_return(nil)
+    allow(Time).to receive(:now).and_return(Time.new(2020, 2, 25))
   end
 
   it 'run opens CLI Homepage' do
