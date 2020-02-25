@@ -57,7 +57,13 @@ describe BankUi do
 
   describe '#run_bank_ui' do
     it 'runs start banking method' do
+      allow(STDIN).to receive(:gets).and_return('4')
       expect(@bank_ui).to receive(:start_banking)
+      @bank_ui.run_bank_ui
+    end
+    it 'asks users for input' do
+      allow(STDIN).to receive(:gets).and_return('4')
+      expect(@bank_ui).to receive(:user_options)
       @bank_ui.run_bank_ui
     end
   end

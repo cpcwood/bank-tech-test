@@ -7,6 +7,7 @@ class BankUi
 
   def run_bank_ui
     start_banking
+    user_options
   end
 
   def start_banking
