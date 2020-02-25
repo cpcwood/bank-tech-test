@@ -94,5 +94,10 @@ describe BankUi do
       expect(@bank_ui).to receive(:user_options)
       @bank_ui.run_bank_ui
     end
+    it 'if input is 1, it runs display statement' do
+      allow(STDIN).to receive(:gets).and_return('1', '1')
+      expect(@bank_ui).to receive(:display_statement)
+      @bank_ui.run_bank_ui
+    end
   end
 end
