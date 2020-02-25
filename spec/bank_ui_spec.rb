@@ -55,6 +55,13 @@ describe BankUi do
     end
   end
 
+  describe '#display_statement' do
+    it 'clears console before displaying statement' do
+      @bank_ui.display_statement
+      expect(@mock_outputter.outputs[0]).to eq("\e[H\e[2J")
+    end
+  end
+
   describe '#run_bank_ui' do
     it 'runs start banking method' do
       allow(STDIN).to receive(:gets).and_return('4')

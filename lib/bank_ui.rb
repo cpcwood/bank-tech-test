@@ -24,4 +24,8 @@ class BankUi
       @outputter.puts('Incorrect input, please try again...')
     end
   end
+
+  def display_statement
+    @outputter.puts("\e[H\e[2J")
+  end
 end
