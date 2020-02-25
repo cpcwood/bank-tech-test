@@ -12,7 +12,7 @@ class MockOutputter
 end
 
 describe BankUi do
-  let(:bank_account){ double :bank_account, statement: 'test statement', deposit: nil }
+  let(:bank_account){ double :bank_account, statement: 'test statement', deposit: nil, withdraw: nil }
   before(:each) do
     @mock_outputter = MockOutputter.new
     @bank_ui = BankUi.new(outputter: @mock_outputter, inputter: STDIN, bank_account: bank_account)
@@ -140,6 +140,10 @@ describe BankUi do
       allow(STDIN).to receive(:gets).and_return('asd10.00')
       @bank_ui.withdraw_money
       expect(@mock_outputter.outputs[3]).to eq("Invalid number or 'quit' inputted, returning to user options")
+    end
+    it 'if input is valid add to bank account as float' do
+      expect(bank_account).to receive(:withdraw).with(10.20)
+      @bank_ui.withdraw_money
     end
   end
 

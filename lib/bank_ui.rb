@@ -55,6 +55,7 @@ class BankUi
     @outputter.puts("\nPlease enter amount to withdraw (e.g 110.53) or 'quit' to return to user options...")
     input = @inputter.gets.chomp
     return if invalid_input?(input)
+    @bank_account.withdraw(input.to_f)
   end
 
   private
