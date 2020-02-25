@@ -1,3 +1,5 @@
 require 'bank_account'
+require 'bank_ui'
 
-puts 'Please create new bank account using BankAccount.new'
+new_user = BankUi.new(BankAccount.new)
+new_user.start_banking
