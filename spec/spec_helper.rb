@@ -16,3 +16,14 @@ RSpec.configure do |config|
     puts
   end
 end
+
+class MockOutputter
+  attr_reader :outputs
+  def initialize
+    @outputs = []
+  end
+
+  def puts(output)
+    @outputs.push(output)
+  end
+end

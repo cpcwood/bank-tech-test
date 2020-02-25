@@ -1,16 +1,5 @@
 require 'bank_ui'
 
-class MockOutputter
-  attr_reader :outputs
-  def initialize
-    @outputs = []
-  end
-
-  def puts(output)
-    @outputs.push(output)
-  end
-end
-
 describe BankUi do
   let(:bank_account){ double :bank_account, statement: 'test statement', deposit: nil, withdraw: nil }
   before(:each) do
