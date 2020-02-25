@@ -168,5 +168,10 @@ describe BankUi do
       expect(@bank_ui).to receive(:deposit_money).and_return(nil)
       @bank_ui.run_bank_ui
     end
+    it 'if input is 3, its runs withdraw money' do
+      allow(STDIN).to receive(:gets).and_return('3')
+      expect(@bank_ui).to receive(:withdraw_money).and_return(nil)
+      @bank_ui.run_bank_ui
+    end
   end
 end

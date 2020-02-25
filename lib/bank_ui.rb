@@ -14,6 +14,8 @@ class BankUi
       display_statement
     when '2'
       deposit_money
+    when '3'
+      withdraw_money
     end
   end
 
