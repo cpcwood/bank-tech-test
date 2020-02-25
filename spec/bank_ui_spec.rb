@@ -54,4 +54,11 @@ describe BankUi do
       expect(@bank_ui.user_options).to eq('3')
     end
   end
+
+  describe '#run_bank_ui' do
+    it 'runs start banking method' do
+      expect(@bank_ui).to receive(:start_banking)
+      @bank_ui.run_bank_ui
+    end
+  end
 end
