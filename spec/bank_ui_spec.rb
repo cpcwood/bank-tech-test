@@ -44,5 +44,10 @@ describe BankUi do
       expect(STDIN).to receive(:gets)
       @bank_ui.user_options
     end
+    it 'if user does not input valid input, it asks again' do
+      allow(STDIN).to receive(:gets).and_return('6', '3')
+      @bank_ui.user_options
+      expect(@mock_outputter.outputs[2]).to eq('Incorrect input, please try again...')
+    end
   end
 end

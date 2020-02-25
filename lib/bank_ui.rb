@@ -13,6 +13,10 @@ class BankUi
   def user_options
     @outputter.puts("\e[H\e[2J")
     @outputter.puts("Please select an option (1/2/3/4) from the list below:\n1. Display Statement\n2. Deposit Money\n3. Withdraw Money\n4. Exit Application")
-    @inputter.gets.chomp
+    loop do
+      input = @inputter.gets.chomp
+      break if input.match?(/1|2|3|4/)
+      @outputter.puts('Incorrect input, please try again...')
+    end
   end
 end
