@@ -173,5 +173,11 @@ describe BankUi do
       expect(@bank_ui).to receive(:withdraw_money).and_return(nil)
       @bank_ui.run_bank_ui
     end
+    it 'if input is 4, quitting message is displayed and program exitted' do
+      allow(@bank_ui).to receive(:start_banking).and_return(nil)
+      allow(@bank_ui).to receive(:user_options).and_return('4')
+      @bank_ui.run_bank_ui
+      expect(@mock_outputter.outputs[0]).to eq('Program exitting...')
+    end
   end
 end

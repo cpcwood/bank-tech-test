@@ -16,6 +16,8 @@ class BankUi
       deposit_money
     when '3'
       withdraw_money
+    when '4'
+      @outputter.puts('Program exitting...')
     end
   end
 
