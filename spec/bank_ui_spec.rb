@@ -124,6 +124,10 @@ describe BankUi do
       @bank_ui.withdraw_money
       expect(@mock_outputter.outputs[1]).to eq("Withdraw Money\n===================")
     end
+    it 'asks user for input' do
+      @bank_ui.withdraw_money
+      expect(@mock_outputter.outputs[2]).to eq("\nPlease enter amount to withdraw (e.g 110.53) or 'quit' to return to user options...")
+    end
   end
 
   describe '#run_bank_ui' do

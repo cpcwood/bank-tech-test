@@ -52,5 +52,6 @@ class BankUi
   def withdraw_money
     @outputter.puts("\e[H\e[2J")
     @outputter.puts("Withdraw Money\n===================")
+    @outputter.puts("\nPlease enter amount to withdraw (e.g 110.53) or 'quit' to return to user options...")
   end
 end
