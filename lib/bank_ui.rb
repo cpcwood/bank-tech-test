@@ -48,4 +48,8 @@ class BankUi
     return @outputter.puts("Invalid number or 'quit' inputted, returning to user options") unless input.match?(/\A\d+(\.\d{2})?\z/)
     @bank_account.deposit(input.to_f)
   end
+
+  def withdraw_money
+    @outputter.puts("\e[H\e[2J")
+  end
 end
