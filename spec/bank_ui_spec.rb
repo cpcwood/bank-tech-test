@@ -84,6 +84,10 @@ describe BankUi do
   end
 
   describe '#deposit_money' do
+    before(:each) do
+      allow(STDIN).to receive(:gets).and_return('10')
+    end
+
     it 'clears console before displaying outputs' do
       @bank_ui.deposit_money
       expect(@mock_outputter.outputs[0]).to eq("\e[H\e[2J")
@@ -95,6 +99,10 @@ describe BankUi do
     it 'asks user for input' do
       @bank_ui.deposit_money
       expect(@mock_outputter.outputs[2]).to eq("\nPlease enter amount to deposit...")
+    end
+    it 'gets user input' do
+      expect(STDIN).to receive(:gets)
+      @bank_ui.deposit_money
     end
   end
 
