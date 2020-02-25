@@ -70,5 +70,9 @@ describe BankAccount do
       expect(split_lines[1]).to include('10 || || 10')
       expect(split_lines[2]).to include('|| 15 || -5')
     end
+    it 'displays header with date title on the top line' do
+      top_line = subject.statement.split("\n")[0]
+      expect(top_line).to include('date || credit || debit || balance')
+    end
   end
 end

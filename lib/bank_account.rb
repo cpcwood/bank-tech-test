@@ -17,7 +17,7 @@ class BankAccount
   end
 
   def statement
-    statement = "credit || debit || balance\n"
+    statement = "date || credit || debit || balance\n"
     @transaction_history.each do |record|
       statement += generate_statement_line(record)
     end
