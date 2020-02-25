@@ -1,5 +1,5 @@
-require 'bank_account'
-require 'bank_ui'
+require './lib/bank_account'
+require './lib/bank_ui'
 
-new_user = BankUi.new(BankAccount.new)
-new_user.start_banking
+new_user = BankUi.new(outputter: STDOUT, inputter: STDIN, bank_account: BankAccount.new)
+new_user.run_bank_ui
