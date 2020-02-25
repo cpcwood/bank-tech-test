@@ -9,6 +9,7 @@ class BankUi
   def run_bank_ui
     loop do
       user_input = user_options
+      @outputter.puts("\e[H\e[2J")
       case user_input
       when '1'
         display_statement
@@ -35,7 +36,6 @@ class BankUi
   end
 
   def display_statement
-    @outputter.puts("\e[H\e[2J")
     @outputter.puts("CLI Bank Statement\n===================")
     @outputter.puts(@bank_account.statement)
     @outputter.puts("\nPress any key to return to options...")
@@ -43,7 +43,6 @@ class BankUi
   end
 
   def deposit_money
-    @outputter.puts("\e[H\e[2J")
     @outputter.puts("Deposit Money\n===================")
     @outputter.puts("\nPlease enter amount to deposit (e.g 110.53) or 'quit' to return to user options...")
     input = @inputter.gets.chomp
@@ -52,7 +51,6 @@ class BankUi
   end
 
   def withdraw_money
-    @outputter.puts("\e[H\e[2J")
     @outputter.puts("Withdraw Money\n===================")
     @outputter.puts("\nPlease enter amount to withdraw (e.g 110.53) or 'quit' to return to user options...")
     input = @inputter.gets.chomp

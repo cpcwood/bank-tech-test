@@ -56,21 +56,17 @@ describe BankUi do
       allow(STDIN).to receive(:getc).and_return('4')
     end
 
-    it 'clears console before displaying statement' do
-      @bank_ui.display_statement
-      expect(@mock_outputter.outputs[0]).to eq("\e[H\e[2J")
-    end
     it 'adds title to screen' do
       @bank_ui.display_statement
-      expect(@mock_outputter.outputs[1]).to eq("CLI Bank Statement\n===================")
+      expect(@mock_outputter.outputs[0]).to eq("CLI Bank Statement\n===================")
     end
     it 'adds displays statement from passed in bank account class' do
       @bank_ui.display_statement
-      expect(@mock_outputter.outputs[2]).to eq('test statement')
+      expect(@mock_outputter.outputs[1]).to eq('test statement')
     end
     it 'asks user to input any charater to return to options' do
       @bank_ui.display_statement
-      expect(@mock_outputter.outputs[3]).to eq("\nPress any key to return to options...")
+      expect(@mock_outputter.outputs[2]).to eq("\nPress any key to return to options...")
     end
     it 'requires input before returning' do
       expect(STDIN).to receive(:getc)
@@ -83,17 +79,13 @@ describe BankUi do
       allow(STDIN).to receive(:gets).and_return('10.20')
     end
 
-    it 'clears console before displaying outputs' do
-      @bank_ui.deposit_money
-      expect(@mock_outputter.outputs[0]).to eq("\e[H\e[2J")
-    end
     it 'adds title to screen' do
       @bank_ui.deposit_money
-      expect(@mock_outputter.outputs[1]).to eq("Deposit Money\n===================")
+      expect(@mock_outputter.outputs[0]).to eq("Deposit Money\n===================")
     end
     it 'asks user for input' do
       @bank_ui.deposit_money
-      expect(@mock_outputter.outputs[2]).to eq("\nPlease enter amount to deposit (e.g 110.53) or 'quit' to return to user options...")
+      expect(@mock_outputter.outputs[1]).to eq("\nPlease enter amount to deposit (e.g 110.53) or 'quit' to return to user options...")
     end
     it 'gets user input' do
       expect(STDIN).to receive(:gets)
@@ -102,7 +94,7 @@ describe BankUi do
     it 'if input is invalid number deposit displays error and returns' do
       allow(STDIN).to receive(:gets).and_return('asd10.00')
       @bank_ui.deposit_money
-      expect(@mock_outputter.outputs[3]).to eq("Invalid number or 'quit' inputted, returning to user options")
+      expect(@mock_outputter.outputs[2]).to eq("Invalid number or 'quit' inputted, returning to user options")
     end
     it 'if input is valid add to bank account as float' do
       expect(bank_account).to receive(:deposit).with(10.20)
@@ -115,17 +107,13 @@ describe BankUi do
       allow(STDIN).to receive(:gets).and_return('10.20')
     end
 
-    it 'clears console before displaying outputs' do
-      @bank_ui.withdraw_money
-      expect(@mock_outputter.outputs[0]).to eq("\e[H\e[2J")
-    end
     it 'adds title to screen' do
       @bank_ui.withdraw_money
-      expect(@mock_outputter.outputs[1]).to eq("Withdraw Money\n===================")
+      expect(@mock_outputter.outputs[0]).to eq("Withdraw Money\n===================")
     end
     it 'asks user for input' do
       @bank_ui.withdraw_money
-      expect(@mock_outputter.outputs[2]).to eq("\nPlease enter amount to withdraw (e.g 110.53) or 'quit' to return to user options...")
+      expect(@mock_outputter.outputs[1]).to eq("\nPlease enter amount to withdraw (e.g 110.53) or 'quit' to return to user options...")
     end
     it 'gets user input' do
       expect(STDIN).to receive(:gets)
@@ -134,7 +122,7 @@ describe BankUi do
     it 'if input is invalid number withdraw displays error and returns' do
       allow(STDIN).to receive(:gets).and_return('asd10.00')
       @bank_ui.withdraw_money
-      expect(@mock_outputter.outputs[3]).to eq("Invalid number or 'quit' inputted, returning to user options")
+      expect(@mock_outputter.outputs[2]).to eq("Invalid number or 'quit' inputted, returning to user options")
     end
     it 'if input is valid add to bank account as float' do
       expect(bank_account).to receive(:withdraw).with(10.20)
@@ -147,6 +135,11 @@ describe BankUi do
       allow(@bank_ui).to receive(:user_options).and_return('4')
       expect(@bank_ui).to receive(:user_options)
       @bank_ui.run_bank_ui
+    end
+    it 'clears console before displaying user selection' do
+      allow(@bank_ui).to receive(:user_options).and_return('4')
+      @bank_ui.run_bank_ui
+      expect(@mock_outputter.outputs[0]).to eq("\e[H\e[2J")
     end
     it 'if input is 1, it runs display statement' do
       allow(@bank_ui).to receive(:user_options).and_return('1', '4')
@@ -167,7 +160,7 @@ describe BankUi do
       allow(@bank_ui).to receive(:start_banking).and_return(nil)
       allow(@bank_ui).to receive(:user_options).and_return('4')
       @bank_ui.run_bank_ui
-      expect(@mock_outputter.outputs[0]).to eq('Program exitting...')
+      expect(@mock_outputter.outputs[-1]).to eq('Program exitting...')
     end
     it 'loops through user inputs until quit is selected' do
       allow(@bank_ui).to receive(:user_options).and_return('1', '4')
