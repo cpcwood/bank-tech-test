@@ -58,7 +58,7 @@ describe BankUi do
 
   describe '#display_statement' do
     before(:each) do
-      allow(STDIN).to receive(:gets).and_return('4')
+      allow(STDIN).to receive(:getc).and_return('4')
     end
 
     it 'clears console before displaying statement' do
@@ -75,10 +75,10 @@ describe BankUi do
     end
     it 'asks user to input any charater to return to options' do
       @bank_ui.display_statement
-      expect(@mock_outputter.outputs[3]).to eq("\nInput any charater to return to options...")
+      expect(@mock_outputter.outputs[3]).to eq("\nPress any key to return to options...")
     end
     it 'requires input before returning' do
-      expect(STDIN).to receive(:gets)
+      expect(STDIN).to receive(:getc)
       @bank_ui.display_statement
     end
   end
@@ -149,27 +149,27 @@ describe BankUi do
 
   describe '#run_bank_ui' do
     it 'runs start banking method' do
-      allow(STDIN).to receive(:gets).and_return('4')
+      allow(@bank_ui).to receive(:user_options).and_return('4')
       expect(@bank_ui).to receive(:start_banking)
       @bank_ui.run_bank_ui
     end
     it 'asks users for input' do
-      allow(STDIN).to receive(:gets).and_return('4')
+      allow(@bank_ui).to receive(:user_options).and_return('4')
       expect(@bank_ui).to receive(:user_options)
       @bank_ui.run_bank_ui
     end
     it 'if input is 1, it runs display statement' do
-      allow(STDIN).to receive(:gets).and_return('1')
+      allow(@bank_ui).to receive(:user_options).and_return('1', '4')
       expect(@bank_ui).to receive(:display_statement).and_return(nil)
       @bank_ui.run_bank_ui
     end
     it 'if input is 2, its runs deposit money' do
-      allow(STDIN).to receive(:gets).and_return('2')
+      allow(@bank_ui).to receive(:user_options).and_return('2', '4')
       expect(@bank_ui).to receive(:deposit_money).and_return(nil)
       @bank_ui.run_bank_ui
     end
     it 'if input is 3, its runs withdraw money' do
-      allow(STDIN).to receive(:gets).and_return('3')
+      allow(@bank_ui).to receive(:user_options).and_return('3', '4')
       expect(@bank_ui).to receive(:withdraw_money).and_return(nil)
       @bank_ui.run_bank_ui
     end
@@ -178,6 +178,12 @@ describe BankUi do
       allow(@bank_ui).to receive(:user_options).and_return('4')
       @bank_ui.run_bank_ui
       expect(@mock_outputter.outputs[0]).to eq('Program exitting...')
+    end
+    it 'loops through user inputs until quit is selected' do
+      allow(@bank_ui).to receive(:user_options).and_return('1', '4')
+      allow(@bank_ui).to receive(:display_statement).and_return(nil)
+      @bank_ui.run_bank_ui
+      expect(@mock_outputter.outputs[-1]).to eq('Program exitting...')
     end
   end
 end
