@@ -38,5 +38,6 @@ class BankUi
   def deposit_money
     @outputter.puts("\e[H\e[2J")
     @outputter.puts("Deposit Money\n===================")
+    @outputter.puts("\nPlease enter amount to deposit...")
   end
 end

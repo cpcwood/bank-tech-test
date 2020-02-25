@@ -92,6 +92,10 @@ describe BankUi do
       @bank_ui.deposit_money
       expect(@mock_outputter.outputs[1]).to eq("Deposit Money\n===================")
     end
+    it 'asks user for input' do
+      @bank_ui.deposit_money
+      expect(@mock_outputter.outputs[2]).to eq("\nPlease enter amount to deposit...")
+    end
   end
 
   describe '#run_bank_ui' do
