@@ -9,9 +9,7 @@ class BankUi
   def run_bank_ui
     start_banking
     user_input = user_options
-    if user_input == '1'
-      display_statement
-    end
+    display_statement if user_input == '1'
   end
 
   def start_banking
@@ -35,5 +33,9 @@ class BankUi
     @outputter.puts(@bank_account.statement)
     @outputter.puts("\nInput any charater to return to options...")
     @inputter.gets
+  end
+
+  def deposit_money
+    @outputter.puts("\e[H\e[2J")
   end
 end
