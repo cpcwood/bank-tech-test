@@ -26,4 +26,11 @@ describe BankUi do
       expect(mock_outputter.outputs[1]).to eq('Welcome to CLI Bank')
     end
   end
+
+  describe '#user_options' do
+    it 'clears console before adding options to screen' do
+      subject.user_options
+      expect(mock_outputter.outputs[0]).to eq("\e[H\e[2J")
+    end
+  end
 end
