@@ -31,5 +31,6 @@ class BankUi
     @outputter.puts("CLI Bank Statement\n===================")
     @outputter.puts(@bank_account.statement)
     @outputter.puts("\nInput any charater to return to options...")
+    @inputter.gets
   end
 end

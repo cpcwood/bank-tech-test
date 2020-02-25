@@ -57,6 +57,10 @@ describe BankUi do
   end
 
   describe '#display_statement' do
+    before(:each) do
+      allow(STDIN).to receive(:gets).and_return('4')
+    end
+
     it 'clears console before displaying statement' do
       @bank_ui.display_statement
       expect(@mock_outputter.outputs[0]).to eq("\e[H\e[2J")
@@ -72,6 +76,10 @@ describe BankUi do
     it 'asks user to input any charater to return to options' do
       @bank_ui.display_statement
       expect(@mock_outputter.outputs[3]).to eq("\nInput any charater to return to options...")
+    end
+    it 'requires input before returning' do
+      expect(STDIN).to receive(:gets)
+      @bank_ui.display_statement
     end
   end
 
