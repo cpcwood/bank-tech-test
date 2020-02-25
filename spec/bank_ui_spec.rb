@@ -49,5 +49,9 @@ describe BankUi do
       @bank_ui.user_options
       expect(@mock_outputter.outputs[2]).to eq('Incorrect input, please try again...')
     end
+    it 'returns user input' do
+      allow(STDIN).to receive(:gets).and_return('3')
+      expect(@bank_ui.user_options).to eq('3')
+    end
   end
 end
