@@ -42,3 +42,9 @@ User enters money to deposit and presses return to return to CLI.
 User enters selection of '1' and presses return to view statement:
 ![CLI Statement Page](img/screenshot_5.png)
 User then clicks any key and presses enter to return to CLI, then enters '4' and presses return to quit program.
+
+### Code Structure
+
+The code has been designed with two classes to seperate the concerns of logic and user interface:
+- BankAccount - handles model data and logic of withdrawals, deposits, and statements
+- BankUi - Handles user inputs and displaying GUI for user to nagivate the program
