@@ -14,7 +14,7 @@ end
 describe BankUi do
   before(:each) do
     @mock_outputter = MockOutputter.new
-    @bank_ui = BankUi.new(outputter: @mock_outputter)
+    @bank_ui = BankUi.new(outputter: @mock_outputter, inputter: STDIN)
   end
 
   describe '#start_banking' do
@@ -30,12 +30,19 @@ describe BankUi do
 
   describe '#user_options' do
     it 'clears console before adding options to screen' do
+      allow(STDIN).to receive(:gets).and_return('1')
       @bank_ui.user_options
       expect(@mock_outputter.outputs[0]).to eq("\e[H\e[2J")
     end
     it 'displays list of options' do
+      allow(STDIN).to receive(:gets).and_return('1')
       @bank_ui.user_options
       expect(@mock_outputter.outputs[1]).to eq("Please select an option (1/2/3/4) from the list below:\n1. Display Statement\n2. Deposit Money\n3. Withdraw Money\n4. Exit Application")
+    end
+    it 'asks user for input' do
+      allow(STDIN).to receive(:gets).and_return('1')
+      expect(STDIN).to receive(:gets)
+      @bank_ui.user_options
     end
   end
 end
