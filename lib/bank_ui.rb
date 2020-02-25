@@ -1,10 +1,11 @@
-# User interface for CLI Bank, accepts Bank class in initalization as backend logic
+# User interface for CLI Bank, accepts Ouputter, Inputter, and Bank class in initalization
 class BankUi
-  def start_banking
-    print_output('Welcome to CLI Bank')
+  def initialize(outputter:)
+    @outputter = outputter
   end
-  
-  def print_output(output)
-    STDOUT.puts(output)
+
+  def start_banking
+    @outputter.puts("\e[H\e[2J")
+    @outputter.puts('Welcome to CLI Bank')
   end
 end
