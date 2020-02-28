@@ -13,8 +13,14 @@ describe StatementGenerator do
       expect(top_line).to eq("date || credit || debit || balance")
     end
     it 'prints credit statement' do
+      transaction_history = [{ date: Time.new(2012, 1, 10), credit: 92.12, balance:  92.12}]
       result = subject.create_statement(transaction_history).split("\n")
       expect(result[1]).to include('10/01/2012 || 92.12 || || 92.12')
+    end
+    it 'prints debit statement' do
+      transaction_history = [{ date: Time.new(2012, 1, 10), debit: 92.12, balance:  -92.12}]
+      result = subject.create_statement(transaction_history).split("\n")
+      expect(result[1]).to include('10/01/2012 || || 92.12 || -92.12')
     end
   end
 end
