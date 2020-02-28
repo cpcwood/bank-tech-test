@@ -47,5 +47,5 @@ User then clicks any key and presses enter to return to CLI, then enters '4' and
 
 The code has been designed with two classes to seperate the concerns of logic and user interface:
 - BankAccount - handles model data and logic of withdrawals, deposits, and statements
-- BankUi - Handles user inputs and displaying GUI for user to nagivate the program
+- BankUi - handles user inputs and displaying GUI for user to nagivate the program
 - StatementGenerator - takes transaction history and returns pretty statement
