@@ -1,7 +1,7 @@
 class StatementGenerator
   def create_statement(transaction_history)
     statement = "date || credit || debit || balance\n"
-    transaction_history.each do |record|
+    transaction_history.reverse.each do |record|
       statement += generate_statement_line(record)
     end
     statement
