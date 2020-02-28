@@ -25,8 +25,8 @@ describe StatementGenerator do
       transaction_history = [{ date: Time.new(2012, 1, 10), credit: 92.12, balance:  92.12},
         { date: Time.new(2012, 1, 14), debit: 120, balance: -27.79 }]
       result = subject.create_statement(transaction_history).split("\n")
-      expect(result[1]).to include('10/01/2012 || 92.12 || || 92.12')
-      expect(result[2]).to include('14/01/2012 || || 120.00 || -27.79')
+      expect(result[2]).to include('10/01/2012 || 92.12 || || 92.12')
+      expect(result[1]).to include('14/01/2012 || || 120.00 || -27.79')
     end
   end
 end
